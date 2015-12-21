@@ -1,0 +1,15 @@
+search results are in a div with class container-results
+
+each listing is a table with columns as follows:
+
+1 - class="watchlist"
+2 - class="image"
+3 - class="description"
+contains anchor link to listing page, with link text
+being listing title
+and
+a short description within a paragraph element
+
+4 - price
+5 - posted
+
