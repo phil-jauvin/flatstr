@@ -27,10 +27,60 @@ var kijiji = function(req,res){
     end = html.indexOf('<div class="adsense-top-bar">Sponsored Links:</div>');
     html = html.slice(html[0],end);
 
-    // Array of listings
-    var listings = html.split("</table>");
+    // Array of listings received from Kijiji
+    var results = html.split("</table>");
 
-    res.send(String(listings[0]));
+    // This is the object we're sending back
+    var listings = {
+
+      source:"Kijiji",
+      flats:[]
+
+    }
+
+
+    // Each iteration of the for loop will modify flat and push it to flats
+
+    var thumbnail = "";
+    var title = "";
+    var link = "";
+
+    for(result of results){
+
+      result = result.trim();
+
+      // Let's get the thumbnail image
+      start = result.indexOf('img src="')+9;
+      result = result.slice(start);
+      end = result.indexOf('"');
+
+      thumbnail = result.slice(0,end);
+
+      // Listing title
+      start = result.indexOf('alt="')+5;
+      result = result.slice(start);
+      end = result.indexOf('"');
+
+      title = result.slice(0,end);
+
+      // Link to original listing
+      start = result.indexOf('a href="')+8;
+      result = result.slice(start);
+      end = result.indexOf('"');
+
+      link = "http://www.kijiji.ca"+result.slice(0,end);
+
+      listings.flats.push({
+
+        link:link,
+        thumbnail:thumbnail,
+        title:title
+
+      });
+
+    }
+
+    res.send(listings);
 
   }
 
