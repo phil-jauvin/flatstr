@@ -68,6 +68,8 @@ var kijiji = function(req,res){
       start = result.indexOf('a href="')+8;
       link = "http://www.kijiji.ca"+extract(result,start);
 
+
+      // And finally push it to the flats array in the listings object
       listings.flats.push({
 
         link:link,
@@ -86,4 +88,4 @@ var kijiji = function(req,res){
 
 }
 
-module.exports.kijiji =  kijiji;
+module.exports.kijiji = kijiji;
