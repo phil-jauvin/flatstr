@@ -39,7 +39,14 @@ var kijiji = function(req,res){
     }
 
 
-    // Each iteration of the for loop will modify flat and push it to flats
+    function extract(result,start){
+
+      result = result.slice(start);
+      end = result.indexOf('"');
+
+      return result.slice(0,end);
+
+    }
 
     var thumbnail = "";
     var title = "";
@@ -51,24 +58,15 @@ var kijiji = function(req,res){
 
       // Let's get the thumbnail image
       start = result.indexOf('img src="')+9;
-      result = result.slice(start);
-      end = result.indexOf('"');
-
-      thumbnail = result.slice(0,end);
+      thumbnail = extract(result,start);
 
       // Listing title
       start = result.indexOf('alt="')+5;
-      result = result.slice(start);
-      end = result.indexOf('"');
-
-      title = result.slice(0,end);
+      title = extract(result,start);
 
       // Link to original listing
       start = result.indexOf('a href="')+8;
-      result = result.slice(start);
-      end = result.indexOf('"');
-
-      link = "http://www.kijiji.ca"+result.slice(0,end);
+      link = "http://www.kijiji.ca"+extract(result,start);
 
       listings.flats.push({
 
