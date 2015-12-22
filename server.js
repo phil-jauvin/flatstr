@@ -1,5 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
+var flats = require("./flats");
 
 var app = express();
 
@@ -14,6 +15,8 @@ app.use(express.static(__dirname+"/public"));
 app.get("/",function(req,res){
   res.sendFile(__dirname+"/public/pages/index.html");
 });
+
+app.get("/flats/kijiji/:page",flats.kijiji);
 
 // "Page you're looking for can't be found"
 app.get("*",function(req,res){
