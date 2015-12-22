@@ -30,7 +30,7 @@ var kijiji = function(req,res){
     // Array of listings
     var listings = html.split("</table>");
 
-    res.send(String(cock[0]));
+    res.send(String(listings[0]));
 
   }
 
