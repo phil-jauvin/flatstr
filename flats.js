@@ -1,5 +1,16 @@
 var request = require("request");
 
+// Helper function to extract information from pages
+function extract(result,start){
+
+  result = result.slice(start);
+  end = result.indexOf('"');
+
+  return result.slice(0,end);
+
+}
+
+
 /*
   Each function scrapes a page of flat listings
   on a classifieds site and returns them in JSON form. The name of the function
@@ -35,16 +46,6 @@ var kijiji = function(req,res){
 
       source:"Kijiji",
       flats:[]
-
-    }
-
-
-    function extract(result,start){
-
-      result = result.slice(start);
-      end = result.indexOf('"');
-
-      return result.slice(0,end);
 
     }
 

@@ -13,14 +13,14 @@ app.use(express.static(__dirname+"/public"));
 
 // Home page
 app.get("/",function(req,res){
-  res.sendFile(__dirname+"/public/pages/index.html");
+  res.sendFile(__dirname+"/public/index.html");
 });
 
 app.get("/flats/kijiji/:page",flats.kijiji);
 
 // "Page you're looking for can't be found"
 app.get("*",function(req,res){
-  res.sendFile(__dirname+"/public/pages/404.html");
+  res.sendFile(__dirname+"/public/404.html");
 });
 
 var port = 3000;
