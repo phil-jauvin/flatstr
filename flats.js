@@ -1,10 +1,10 @@
 var request = require("request");
 
 // Helper function to extract information from pages
-function extract(result,start){
+function extract(result,start,stop){
 
   result = result.slice(start);
-  end = result.indexOf('"');
+  end = result.indexOf(stop);
 
   return result.slice(0,end);
 
@@ -19,14 +19,13 @@ function extract(result,start){
 
 var kijiji = function(req,res){
 
-  var page = req.params.page;
-  page = String(page);
+  var page = String(req.params.page);
 
   var url = "http://www.kijiji.ca/b-apartments-condos/ottawa/page-"+page+"/c37l1700185";
 
   // GET request to Kijiji
   // "html" is the page source received as a string
-  request(url, function (error, response, html) {
+  request(url, function (error, response, html){
 
   if (!error) {
 
@@ -59,15 +58,15 @@ var kijiji = function(req,res){
 
       // Let's get the thumbnail image
       start = result.indexOf('img src="')+9;
-      thumbnail = extract(result,start);
+      thumbnail = extract(result,start,'"');
 
       // Listing title
       start = result.indexOf('alt="')+5;
-      title = extract(result,start);
+      title = extract(result,start,'"');
 
       // Link to original listing
       start = result.indexOf('a href="')+8;
-      link = "http://www.kijiji.ca"+extract(result,start);
+      link = "http://www.kijiji.ca"+extract(result,start,'"');
 
 
       // And finally push it to the flats array in the listings object
@@ -89,4 +88,66 @@ var kijiji = function(req,res){
 
 }
 
+var craigslist = function(req,res){
+
+  var page = String(req.params.page-1);
+
+  var url = "http://ottawa.craigslist.ca/search/apa?housing_type=1&housing_type=2&housing_type=5&s="+page;
+
+    request(url, function (error, response, html){
+
+      if(!error){
+
+        var start = html.indexOf('<p class="row"');
+        var end = html.indexOf('<div id="mapcontainer"');
+
+        html = html.slice(start,end);
+
+        var results = html.split("</p>");
+
+        var listings = {
+
+          source:"Craigslist",
+          flats:[]
+
+        }
+
+        var thumbnail = "";
+        var title = "";
+        var link = "";
+
+        for(result of results){
+
+          result = result.trim();
+
+          // Listing title
+          start = result.indexOf('class="hdrlnk">')+15;
+          title = extract(result,start,'</a>');
+
+          // Link to original listing
+          start = result.indexOf('a href="')+8;
+          link = "http://ottawa.craigslist.ca"+extract(result,start,'"');
+
+
+          // And finally push it to the flats array in the listings object
+          listings.flats.push({
+
+            link:link,
+            title:title
+
+          });
+
+        }
+
+
+
+        res.send(listings);
+
+      }
+
+    });
+
+}
+
+module.exports.craigslist = craigslist;
 module.exports.kijiji = kijiji;

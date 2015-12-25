@@ -19,6 +19,9 @@ app.get("/",function(req,res){
 // Get all the flats from :page of Kijiji
 app.get("/flats/kijiji/:page",flats.kijiji);
 
+// Get all the flats from :page of Craigslist
+app.get("/flats/craigslist/:page",flats.craigslist);
+
 
 // "Page you're looking for can't be found"
 app.get("*",function(req,res){
