@@ -90,9 +90,10 @@ var kijiji = function(req,res){
 
 var craigslist = function(req,res){
 
-  var page = String(req.params.page-1);
+  // The first page of searches is page 0
+  var page = String(req.params.page);
 
-  var url = "http://ottawa.craigslist.ca/search/apa?housing_type=1&housing_type=2&housing_type=5&s="+page;
+  var url = "http://ottawa.craigslist.ca/search/apa?bedrooms="+page[1]+"&bathrooms="+page[2]+"&housing_type=1&housing_type=2&housing_type=5s="+page[0];
 
     request(url, function (error, response, html){
 
@@ -138,8 +139,6 @@ var craigslist = function(req,res){
           });
 
         }
-
-
 
         res.send(listings);
 
