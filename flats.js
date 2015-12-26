@@ -20,8 +20,40 @@ function extract(result,start,stop){
 var kijiji = function(req,res){
 
   var page = String(req.params.page);
+  var url = "";
+  var urlcap = "";
 
-  var url = "http://www.kijiji.ca/b-apartments-condos/ottawa/page-"+page+"/c37l1700185";
+  // Kijiji makes it really painful with their URLs
+  if(page[1] == "1"){
+    url += "http://www.kijiji.ca/b-1-bedroom-apartments-condos/ottawa";
+    urlcap += "/c212l1700185a162";
+  }
+
+  else if(page[1] == "2"){
+    url += "http://www.kijiji.ca/b-2-bedroom-apartments-condos/ottawa";
+    urlcap += "/c214l1700185a133";
+  }
+
+  else if(page[1] == "3"){
+    url += "http://www.kijiji.ca/b-3-bedroom-apartments-condos/ottawa";
+    urlcap += "/c215l1700185a90";
+  }
+
+  else if(page[1] == "4"){
+    url += "http://www.kijiji.ca/b-4-plus-bedroom-apartments-condos/ottawa";
+    urlcap += "/c216l1700185a219";
+  }
+
+  if(page[2] == "1"){
+    url += "/1+bathroom";
+  }
+
+  else{
+    url += "/"+page[2]+"+bathrooms";
+  }
+
+  url += "/page-"+page[0];
+  url += urlcap;
 
   // GET request to Kijiji
   // "html" is the page source received as a string
