@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Page</title>
+  <title>Flatstr</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -24,9 +24,39 @@
 
 </head>
 
-  <body ng-controller="PageController as page">
+  <body ng-controller="PageController as page" ng-init="tab = 1">
 
-    <h1>Test</h1>
+    <div class="container">
+
+      <div class="row">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+
+            <div class="navbar-header">
+              <a class="navbar-brand" href="http://localhost:3000/">Flatstr</a>
+            </div>
+
+            <div>
+              <ul class="nav navbar-nav">
+                <li ng-class="{active:tab === 1}"><a href ng-click="tab = 1">Home</a></li>
+                <li ng-class="{active:tab === 2}"><a href ng-click="tab = 2">About</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
+      </div>
+
+
+      <div ng-show="tab === 1">
+        <flat-list></flat-list>
+      </div>
+
+      <div ng-show="tab === 2">
+        <about></about>
+      </div>
+
+    </div>
 
   </body>
 
