@@ -100,13 +100,18 @@ var kijiji = function(req,res){
       start = result.indexOf('a href="')+8;
       link = "http://www.kijiji.ca"+extract(result,start,'"');
 
+      // Price per month
+      start = result.indexOf('class="price">')+14;
+      price = extract(result,start,'</td>').trim();
+
 
       // And finally push it to the flats array in the listings object
       listings.flats.push({
 
         link:link,
         thumbnail:thumbnail,
-        title:title
+        title:title,
+        price:price
 
       });
 
