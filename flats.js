@@ -23,6 +23,10 @@ var kijiji = function(req,res){
   var url = "";
   var urlcap = "";
 
+  // page[0] is the page of search results
+  // page[1] is the number of bedrooms
+  // page[2] is the number of bathrooms
+
   // Kijiji makes it really painful with their URLs
   if(page[1] == "1"){
     url += "http://www.kijiji.ca/b-1-bedroom-apartments-condos/ottawa";
@@ -117,6 +121,7 @@ var kijiji = function(req,res){
 
     }
 
+    listings.flats.pop();
     res.send(listings);
 
   }
@@ -129,6 +134,10 @@ var craigslist = function(req,res){
 
   // The first page of searches is page 0
   var page = String(req.params.page);
+
+  // page[0] is the page of search results
+  // page[1] is the number of bedrooms
+  // page[2] is the number of bathrooms
 
   var url = "http://ottawa.craigslist.ca/search/apa?bedrooms="+page[1]+"&bathrooms="+page[2]+"&housing_type=1&housing_type=2&housing_type=5s="+page[0];
 
@@ -166,17 +175,23 @@ var craigslist = function(req,res){
           start = result.indexOf('a href="')+8;
           link = "http://ottawa.craigslist.ca"+extract(result,start,'"');
 
+          // Price per month
+          start = result.indexOf('class="price">')+14;
+          price = extract(result,start,'</span>').trim();
+
 
           // And finally push it to the flats array in the listings object
           listings.flats.push({
 
             link:link,
-            title:title
+            title:title,
+            price:price
 
           });
 
         }
 
+        listings.flats.pop();
         res.send(listings);
 
       }
