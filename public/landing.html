@@ -15,14 +15,14 @@
         <div class="well" style="background-color:rgba(136, 136, 136,0.6);">
           <fieldset>
 
-            <legend style="color:floralwhite;"><h3>Search for flats in Ottawa</h3></legend>
+            <legend style="color:floralwhite;"><h2>Search for flats in Ottawa</h2></legend>
 
           <div class="form-group col-xs-6">
 
             <div>
-              <label for="beds" style="color:floralwhite"><h2>Beds</h2></label>
+              <label for="beds" style="color:floralwhite"><h3>Beds</h3></label>
 
-              <select class="form-control" id="beds">
+              <select ng-model="page.beds" class="form-control" id="beds">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -36,9 +36,9 @@
           <div class="form-group col-xs-6">
 
             <div>
-              <label for="baths" style="color:floralwhite"><h2>Baths</h2></label>
+              <label for="baths" style="color:floralwhite"><h3>Baths</h3></label>
 
-              <select class="form-control" id="baths">
+              <select ng-model="page.baths" class="form-control" id="baths">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -52,7 +52,7 @@
         </div>
 
       <div>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="tab = 1">Take a gander <i class="fa fa-arrow-right"></i></button>
+        <button class="btn btn-primary btn-lg" ng-click="tab = 1;page.renderFlats()">Take a Gander</button>
       </div>
 
       </form>
@@ -61,4 +61,8 @@
   </div>
 
   </div>
+    <div class="container"><p style="position:absolute;bottom:0px;color:floralwhite;">
+      Photo courtesy of
+      <u><a href="https://www.flickr.com/photos/rdb466/22438823087/" style="color:floralwhite;">Ross Dunn on Flickr</a></u></p>
+     </div>
 </div>

@@ -1,15 +1,21 @@
-var app = angular.module("flatstr",[]);
+var app = angular.module("flatstr",["ng"]);
 
 
 app.controller("PageController",["$http",function($http){
 
-  var self = this;
+  self = this;
+  self.page = 1;
+  self.beds = 1;
+  self.baths = 1;
 
-  $http.get("/flats/kijiji/111").then(function(response){
-    self.source = response.data.source;
-    self.flats = response.data.flats;
-  });
+  self.renderFlats = function(){
 
+    $http.get("/flats/kijiji/"+String(self.page)+String(self.beds)+String(self.baths)).then(function(response){
+      self.source = response.data.source;
+      self.flats = response.data.flats;
+    });
+
+  }
 }]);
 
 app.directive("flatList",function(){

@@ -26,13 +26,13 @@
 
 </head>
 
-  <body ng-controller="PageController as page" ng-init="tab = 0">
+  <body ng-init="tab = 0" ng-controller="PageController as page">
 
     <div ng-show="tab === 0">
       <landing-page></landing-page>
     </div>
 
-    <div class="container">
+    <div ng-if="tab != 0" class="container">
 
       <div class="row">
         <nav class="navbar navbar-default navbar-fixed-top" ng-show="tab != 0">
