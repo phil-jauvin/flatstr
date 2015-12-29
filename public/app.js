@@ -29,3 +29,12 @@ app.directive("about",function(){
   };
 
 });
+
+app.directive("landingPage",function(){
+
+  return{
+    "restrict":"E",
+    "templateUrl":"landing.html"
+  };
+
+});

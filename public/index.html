@@ -26,12 +26,16 @@
 
 </head>
 
-  <body ng-controller="PageController as page" ng-init="tab = 1">
+  <body ng-controller="PageController as page" ng-init="tab = 0">
+
+    <div ng-show="tab === 0">
+      <landing-page></landing-page>
+    </div>
 
     <div class="container">
 
       <div class="row">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top" ng-show="tab != 0">
           <div class="container-fluid">
 
             <div class="navbar-header">
@@ -48,7 +52,6 @@
           </div>
         </nav>
       </div>
-
 
       <div ng-show="tab === 1" class="page-content">
         <flat-list></flat-list>

@@ -1,3 +1,18 @@
 .page-content{
   margin-top: 50px;
 }
+
+.landing{
+  background-image: url("skyline.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg {
+    position: relative;
+    background: #000 url("laurier2.jpg") center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
