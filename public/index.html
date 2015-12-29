@@ -13,6 +13,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+  <link rel="stylesheet" href="main.css">
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
@@ -29,7 +31,7 @@
     <div class="container">
 
       <div class="row">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
 
             <div class="navbar-header">
@@ -38,7 +40,7 @@
 
             <div>
               <ul class="nav navbar-nav">
-                <li ng-class="{active:tab === 1}"><a href ng-click="tab = 1">Home</a></li>
+                <li ng-class="{active:tab === 1}"><a href ng-click="tab = 1">Listings</a></li>
                 <li ng-class="{active:tab === 2}"><a href ng-click="tab = 2">About</a></li>
               </ul>
             </div>
@@ -48,11 +50,11 @@
       </div>
 
 
-      <div ng-show="tab === 1">
+      <div ng-show="tab === 1" class="page-content">
         <flat-list></flat-list>
       </div>
 
-      <div ng-show="tab === 2">
+      <div ng-show="tab === 2"  class="page-content">
         <about></about>
       </div>
 
