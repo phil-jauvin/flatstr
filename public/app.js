@@ -8,20 +8,22 @@ app.controller("MainController",["$scope","$location","$log",function($scope,$lo
 
 }]);
 
+
+// Angular routing configuration
 app.config(function($routeProvider){
 
   $routeProvider.when("/",{
-    templateUrl:"test.html",
+    templateUrl:"/views/test.html",
     controller:"MainController"
   });
 
   $routeProvider.when("/flats",{
-    templateUrl:"test.html",
+    templateUrl:"/views/flat-list.html",
     controller:"MainController"
   });
 
   $routeProvider.when("/about",{
-    templateUrl:"about.html",
+    templateUrl:"/views/about.html",
     controller:"MainController"
   });
 

@@ -121,6 +121,7 @@ var kijiji = function(req,res){
 
     }
 
+    // for some reason the last listing in flats shows up as blank, so we pop it.
     listings.flats.pop();
     res.send(listings);
 
@@ -191,6 +192,7 @@ var craigslist = function(req,res){
 
         }
 
+        // for some reason the last listing in flats shows up as blank, so we pop it. 
         listings.flats.pop();
         res.send(listings);
 

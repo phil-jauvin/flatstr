@@ -16,3 +16,8 @@
     background-size: cover;
     overflow: hidden;
 }
+
+.bottom-button{
+  margin-top:25px;
+  margin-bottom:25px;
+}
