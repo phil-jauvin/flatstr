@@ -5,8 +5,8 @@ $(document).ready(function(){
 
   // We give default values to beds and baths in case they aren't initialised by the user.
   var page = 1;
-  var beds = 1;
-  var baths = 1;
+  var beds;
+  var baths;
 
   // This is going to be the markup for each listing
   var html = "";
@@ -43,16 +43,31 @@ $(document).ready(function(){
 
   }
 
-  // When the "more" button is pressed.
-  $("#morebutton").on("click",function(){
+  $("form").on("submit",function(event){
 
-    page++;
-    displayFlats();
+    event.preventDefault();
+
+    var str = $("form").serialize();
+
+    beds = str[10];
+    baths = str[23];
+
+    console.log(beds,baths);
+
+    setTimeout(function(){
+      displayFlats();
+    },500);
+
 
   });
 
-  // Initial display of flats.
-  displayFlats();
+  // When the "more" button is pressed.
+
+  $("#morebutton").on("click",function(){
+    page++;
+    console.log("from morebutton",beds,baths);
+    displayFlats();
+  });
 
 });
 

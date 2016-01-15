@@ -1,3 +1,5 @@
+<script type="text/javascript" src="query.js"></script>
+
 <div class="bg" style="height:100vh;">
 <div class="jumbotron" style="height:100vh;background-color:rgba(136, 136, 136,0.5);">
 
@@ -22,7 +24,7 @@
             <div>
               <label for="beds" style="color:floralwhite"><h3>Beds</h3></label>
 
-              <select ng-model="page.beds" class="form-control" id="beds">
+              <select class="form-control" id="beds" ng-model="beds">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -38,7 +40,7 @@
             <div>
               <label for="baths" style="color:floralwhite"><h3>Baths</h3></label>
 
-              <select ng-model="page.baths" class="form-control" id="baths">
+              <select class="form-control" id="baths" ng-model="baths">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -51,9 +53,7 @@
         </fieldset>
         </div>
 
-      <div>
-        <button class="btn btn-primary btn-lg" ng-click="tab = 1;page.renderFlats()">Take a Gander</button>
-      </div>
+        <button class="btn btn-primary btn-lg" ng-click="loadInitial()">Take a Gander</button>
 
       </form>
     </div>

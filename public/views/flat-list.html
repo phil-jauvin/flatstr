@@ -1,15 +1,24 @@
-<script type="text/javascript" src="query.js"></script>
+<div class="row">
 
-<div>
+  <div class="col-xs-12 page-header">
 
-  <div id="emptydiv">
-  </div>
+    <div class="col-sm-6" style="margin-bottom:15px;">
+      <h1>{{flat.title}}</h1>
+      <h2>{{flat.price}}</h2>
+    </div>
 
-  <div id="listings">
-  </div>
+    <div class="col-sm-6">
 
-  <div class="bottom-button" align="center">
-    <button class="btn btn-primary btn-large" id="morebutton">More flats</button>
+      <div style="vertical-align:top;margin-bottom:10px;" align="center">
+        <img ng-src="{{flat.thumbnail}}"></img>
+      </div>
+
+      <div style="vertical-align:bottom" align="center">
+        <a ng-href="{{flat.link}}"><button class="btn btn-primary">Check out this listing</button></a>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
