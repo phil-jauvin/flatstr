@@ -25,7 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script type="text/javascript" src="app.js"></script>
-
+  <script type="text/javascript" src="anchorscroll.js"></script>
 
 </head>
 
@@ -39,14 +39,15 @@
       <landing></landing>
     </div>
 
+    <div id="landingbottom"></div>
 
-    <div class="container">
+    <div class="container" ng-show="tab != 1">
 
       <div ng-repeat="flat in flats">
         <flat-list></flat-list>
       </div>
 
-      <button class="btn btn-primary btn-lg" ng-click="loadMore()">More</button>
+      <button class="btn btn-primary btn-lg" ng-click="loadInitial()">More</button>
 
     </div>
 

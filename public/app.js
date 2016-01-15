@@ -1,47 +1,49 @@
-var app = angular.module("flatstr",["ngResource","ngRoute"]);
+var app = angular.module("flatstr",["ngResource"]);
 
 
-app.controller("MainController",["$scope","$location","$http","$log",function($scope,$location,$http,$log){
+app.controller("MainController",["$scope","$http","$location","$anchorScroll",function($scope,$http,$location,$anchorScroll){
 
-  $scope.page = 1;
+  // If tab is 1, we don't show the div which contains the flats
+  $scope.tab = 1;
 
-  // Current tab in the navbar
-  $scope.tab = 0;
+  // This variable keeps track of what page of result we're currently looking at.
+  $scope.page = 0;
 
-  $scope.changeView = function(view){
-    $location.path(view);
+  // Keeps track of whether we pull from CL or Kijiji.
+  $scope.kijiji = true;
+
+  $scope.scrollToBottom = function(){
+    $('html, body').animate({
+      scrollTop: $("#landingbottom").offset().top
+    }, 1000);
   }
 
+  // GET request receives the flats from the server and initialises a flats array with $scope.
   $scope.loadInitial = function(){
 
+    $scope.page = $scope.page + 1;
+
+    // Url is in the format /flats/kijiji/xyz
     $http.get("/flats/kijiji/" + $scope.page + $scope.beds + $scope.baths).success(function(response){
       $scope.flats = response.flats;
     });
 
+    // Change the value of tab to reveal the flats after they're loaded into $scope.flats
+    $scope.tab = 0;
 
-  $scope.loadMore = function(){
-
-    $scope.page = $scope.page + 1;
-
-    console.log($scope.page);
-
-    $http.get("/flats/kijiji/" + $scope.page + $scope.beds + $scope.baths).success(function(response){
-      angular.extend($scope.flats,response.flats);
-    });
-
-    console.log($scope.flats.length);
-
-  }
+    setTimeout($scope.scrollToBottom,200);
 
   }
 
 }]);
 
 
+// Directives
+
 app.directive("landing",function(){
 
   return{
-    templateUrl:"views/landing.html",
+    templateUrl:"directives/landing.html",
     restrict:"E"
   }
 
@@ -50,7 +52,7 @@ app.directive("landing",function(){
 app.directive("flatList",function(){
 
   return{
-    templateUrl:"views/flat-list.html",
+    templateUrl:"directives/flat-list.html",
     restrict:"E"
   }
 
