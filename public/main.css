@@ -21,3 +21,16 @@
   margin-top:25px;
   margin-bottom:25px;
 }
+
+.landing-title{
+  color:floralwhite;
+}
+
+#gitlink{
+  color:floralwhite;
+  margin-right: 25px;
+}
+
+#gitlink:hover{
+  color:lightpink;
+}

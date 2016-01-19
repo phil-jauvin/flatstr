@@ -1,7 +1,7 @@
-var app = angular.module("flatstr",["ngResource"]);
+var app = angular.module("flatstr",[]);
 
 
-app.controller("MainController",["$scope","$http","$location","$anchorScroll",function($scope,$http,$location,$anchorScroll){
+app.controller("MainController",["$scope","$http",function($scope,$http){
 
   // If tab is 1, we don't show the div which contains the flats
   $scope.tab = 1;
