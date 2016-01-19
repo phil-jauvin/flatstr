@@ -29,8 +29,17 @@ app.controller("MainController",["$scope","$http","$location","$anchorScroll",fu
 
     $scope.page = $scope.page + 1;
 
+    if($scope.kijiji){
+      var url = "/flats/kijiji/";
+    }
+
+    else{
+      var url = "/flats/craigslist/";
+    }
+
+
     // Url is in the format /flats/kijiji/xyz
-    $http.get("/flats/kijiji/" + $scope.page + $scope.beds + $scope.baths).success(function(response){
+    $http.get(url + $scope.page + $scope.beds + $scope.baths).success(function(response){
       $scope.flats = response.flats;
     });
 
@@ -38,6 +47,10 @@ app.controller("MainController",["$scope","$http","$location","$anchorScroll",fu
     $scope.tab = 0;
 
     setTimeout($scope.scrollToBottom,500);
+
+    if($scope.flats.length < 20){
+      $scope.kijiji = false;
+    }
 
   }
 

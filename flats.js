@@ -134,7 +134,7 @@ var kijiji = function(req,res){
 var craigslist = function(req,res){
 
   // The first page of searches is page 0
-  var page = String(req.params.page);
+  var page = String(Number(req.params.page)-1);
 
   // page[0] is the page of search results
   // page[1] is the number of bedrooms
@@ -192,7 +192,7 @@ var craigslist = function(req,res){
 
         }
 
-        // for some reason the last listing in flats shows up as blank, so we pop it. 
+        // for some reason the last listing in flats shows up as blank, so we pop it.
         listings.flats.pop();
         res.send(listings);
 
