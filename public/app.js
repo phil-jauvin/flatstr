@@ -6,13 +6,19 @@ app.controller("MainController",["$scope","$http","$location","$anchorScroll",fu
   // If tab is 1, we don't show the div which contains the flats
   $scope.tab = 1;
 
+  // Default value for beds and bath
+  $scope.beds = "1";
+  $scope.baths = "1";
+
   // This variable keeps track of what page of result we're currently looking at.
   $scope.page = 0;
 
   // Keeps track of whether we pull from CL or Kijiji.
   $scope.kijiji = true;
 
+  // Smooth scrolling effect
   $scope.scrollToBottom = function(){
+    // JQuery ahead !
     $('html, body').animate({
       scrollTop: $("#landingbottom").offset().top
     }, 1000);
@@ -31,7 +37,7 @@ app.controller("MainController",["$scope","$http","$location","$anchorScroll",fu
     // Change the value of tab to reveal the flats after they're loaded into $scope.flats
     $scope.tab = 0;
 
-    setTimeout($scope.scrollToBottom,200);
+    setTimeout($scope.scrollToBottom,500);
 
   }
 
