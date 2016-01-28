@@ -50,6 +50,7 @@ app.controller("MainController",["$scope","$http",function($scope,$http){
 
     if($scope.flats.length < 20){
       $scope.kijiji = false;
+      $scope.page = -1;
     }
 
   }
