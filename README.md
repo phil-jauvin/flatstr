@@ -1,4 +1,5 @@
 #### Keywords: Node, Express, Angular, Bootstrap, jQuery.
+#### Note that the hosted version of the app has been blocked, but you can download it and use it without any problems.
 
 # flatstr
 ## Find a flat in Ottawa
